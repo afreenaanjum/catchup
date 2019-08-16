@@ -6,7 +6,7 @@ const app = express()
 const port = 3005
 
 app.use(express.json())
-app.use('/', router)
+app.use('/catchup', router)
 
 
 app.listen(port, () => {

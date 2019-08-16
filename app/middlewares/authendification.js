@@ -1,6 +1,6 @@
 const User = require('../models/user')
 
-const authenticateUser = function(req, res,     next){
+const authenticateUser = function(req, res,next){
     const token = req.header('x-auth')
 
     User.findByToken(token)
@@ -10,7 +10,7 @@ const authenticateUser = function(req, res,     next){
                 req.token = token
                 next()
             } else {
-                res.status('401').send({notice: 'token not avaolable'})
+                res.status('401').send({notice: 'token not available'})
             }
 
         })

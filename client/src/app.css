@@ -14,7 +14,7 @@ body{
     position: absolute;
     top: 7rem;
     left: 10rem;
-    width: 20vw;
+    width: 18vw;
     min-height: 50vh;
     padding: 1rem 2rem;
     border-radius: 5px;
@@ -57,6 +57,7 @@ body{
     padding: 2rem;
     font-weight: bold;
     text-decoration: none;
+    color: #fff;
     
 }
 

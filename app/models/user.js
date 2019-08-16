@@ -40,7 +40,11 @@ const userSchema = new Schema({
                 default: Date.now
             }
         }
-    ]
+    ],
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    }
 })
 
 userSchema.pre('save', function(next){
