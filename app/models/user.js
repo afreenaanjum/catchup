@@ -30,6 +30,12 @@ const userSchema = new Schema({
         minlength: 6,
         maxlength: 120
     },
+    friends:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Friends'
+        }
+    ],
     tokens: [
         {
             token: {
@@ -40,12 +46,8 @@ const userSchema = new Schema({
                 default: Date.now
             }
         }
-    ],
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    }
-})
+    ]
+}, {timestamps: true})
 
 userSchema.pre('save', function(next){
     const user = this

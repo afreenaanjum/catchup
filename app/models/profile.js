@@ -22,11 +22,11 @@ const profileSchema = new Schema({
             }
         }
     ],
-    createdAt: {
-        type: Date,
-        default: Date.now()
+  
+    gender: {
+        type: String
     }
-})
+}, {timestamps: true })
 
 const Profile = mongoose.model('Profile', profileSchema)
 module.exports = Profile
