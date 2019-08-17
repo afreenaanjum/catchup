@@ -36,6 +36,12 @@ const userSchema = new Schema({
             ref: 'Friends'
         }
     ],
+    posts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Post'
+        }
+    ],
     tokens: [
         {
             token: {
@@ -51,7 +57,7 @@ const userSchema = new Schema({
 
 userSchema.pre('save', function(next){
     const user = this
-    if(user.isNew){
+    if(user.isNew){ 
         bcryptjs.genSalt(10)
             .then(function(salt){
                 bcryptjs.hash( user.password, salt)
