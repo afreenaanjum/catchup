@@ -1,11 +1,8 @@
 const express = require('express')
 const mongoose = require('./config/database')
 const router = require('./config/routes')
-<<<<<<< HEAD
 const cors = require('cors')
-=======
 const path = require('path')
->>>>>>> origin/master
 
 const app = express()
 const port = 3005

@@ -45,3 +45,40 @@ module.exports.logout = (req, res) => {
     })
 
 }
+// to send friend request
+module.exports.add = (req, res) => { 
+    const newUserId = req.params.id
+    console.log(newUserId)
+    // First find whether the user exist or not
+    User.findById(newUserId)
+        .then(newuser => {
+            if(newuser){
+                //If user present find the user is already a friend 
+                User.findById(req.user._id)
+                .then(user => {
+                    if(user){
+                        if(!user.friends.includes(newUserId)){
+                            user.friends.push(newUserId)
+                            user.save()
+                            res.json("Friend request send")
+                        }else{
+                            res.json('You are already Friend with this person')
+                        }
+                    }
+                })
+                .catch(err => {
+                    res.json(err)
+                })
+            } else {
+                res.json('Person not found')
+            }
+            res.json({})
+        })
+        .catch(err => {
+            res.json (err)
+        })
+}
+
+module.exports.accept = (req, res) => {
+
+}
