@@ -8,8 +8,6 @@ function MainNav() {
           
             <ul>
                 <li> <Link to=""> About</Link></li>
-                <li> <Link to=""> Login</Link></li>
-                <li> <Link to=""> Country</Link></li>
             </ul>
         </div>
     )
