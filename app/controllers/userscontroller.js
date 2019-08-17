@@ -58,9 +58,13 @@ module.exports.add = (req, res) => {
                 .then(user => {
                     if(user){
                         if(!user.friends.includes(newUserId)){
-                            user.friends.push(newUserId)
-                            user.save()
-                            res.json("Friend request send")
+                            if(!user.friendrequests.includes(newUserId)){
+                                user.friendrequests.push(newUserId)
+                                user.save()
+                                res.json("Friend request send")
+                            }else{
+                                res.json('Your request is pending')
+                            }
                         }else{
                             res.json('You are already Friend with this person')
                         }
@@ -72,7 +76,6 @@ module.exports.add = (req, res) => {
             } else {
                 res.json('Person not found')
             }
-            res.json({})
         })
         .catch(err => {
             res.json (err)
@@ -80,5 +83,30 @@ module.exports.add = (req, res) => {
 }
 
 module.exports.accept = (req, res) => {
-
+    const newuser = req.params.id
+    console.log(newuser)
+    console.log(req.user._id)
+    User.findById(req.user._id)
+        .then(user => {
+            if(user){
+                if(!user.friends.includes(newuser)){
+                    if(user.friendrequests.includes(newuser)){
+                        user.friendrequests.splice(user.friendrequests.indexOf('newuser'),1)
+                        user.friends.push(newuser)
+                        user.save()
+                        res.json('Friend request accepted')
+                    }else {
+                        res.json('no request found')
+                    } 
+                }else {
+                    res.json('Already accepted')
+                }
+                  
+            }else {
+                res.status('404').json('Try after some time')
+            }
+        })
+        .catch(err => {
+            res.status('404').json('something went wrong')
+        })
 }

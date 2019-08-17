@@ -25,5 +25,6 @@ router.delete('/posts/:id', authenticateUser, postController.destroy)
 
 
 router.post('/users/:id/add', authenticateUser, usersController.add)
+router.post('/users/:id/accept', authenticateUser, usersController.accept)
 
 module.exports = router

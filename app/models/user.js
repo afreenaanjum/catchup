@@ -36,6 +36,12 @@ const userSchema = new Schema({
             ref: 'User'
         }
     ],
+    friendrequests: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
     posts: [
         {
             type: Schema.Types.ObjectId,
